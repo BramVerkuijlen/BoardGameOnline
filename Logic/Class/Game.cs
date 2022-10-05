@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dal
+namespace Logic.Class
 {
-    public class Class1
+    internal class Game
     {
+        
     }
 }
