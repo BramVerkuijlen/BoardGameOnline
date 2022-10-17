@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic.Class
+namespace DTO.Class
 {
-    public class PlayerManager
+    public class AccountDTO
     {
     }
 }

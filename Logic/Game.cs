@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic.Class
+namespace Logic
 {
-    public class AccountManager
+    public class Game
     {
     }
 }

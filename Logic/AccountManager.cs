@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic.Interfase
+namespace Logic
 {
-    public interface IPlayerManagerDAL
+    public class AccountManager
     {
     }
 }

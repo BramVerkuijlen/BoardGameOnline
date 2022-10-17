@@ -1,8 +1,17 @@
+using Logic.Interfase;
+using Dal.Class;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+/*
+void ConfigureServices(IServiceCollection services)
+{
+    services.AddScoped<IPlayerDAL, PlayerDal>();
+}
+*/
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic.Class
+namespace InterfaceDAL.Interface
 {
-    internal class GameManager
+    public interface IAccountManager
     {
     }
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic.DTO
+namespace Logic
 {
-    public class AccountDTO
+    public class Account
     {
     }
 }
