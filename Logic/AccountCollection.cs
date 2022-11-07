@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InterfaceDAL.Interface
+namespace Logic
 {
-    public interface IAccountManager
+    public class AccountCollection
     {
     }
 }

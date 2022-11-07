@@ -1,4 +1,4 @@
-﻿using Logic.Class;
+﻿using Logic;
 using System.ComponentModel.DataAnnotations;
 
 namespace GameYamWeb.Models

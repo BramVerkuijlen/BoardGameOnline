@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic
+namespace DTO.Class
 {
-    public class AccountManager
+    public class GameDTO
     {
+        int id;
+        string name;
+        string description;
+        
     }
 }

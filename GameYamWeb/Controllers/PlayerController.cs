@@ -1,30 +1,49 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Logic;
 using GameYamWeb.Models;
+using DTO.ResponseObject;
 using DTO.Class;
-using DAL;
-using InterfaceDAL.ResponseObject;
 
 namespace GameYamWeb.Controllers
 {
     public class PlayerController : Controller
     {
-        /* readonly IPlayerManagerDAL PlayerManagerDal;
-        public PlayerController(IPlayerManagerDAL playerManagerDal)
+        private readonly PlayerCollection playerCollection;
+        public PlayerController(PlayerCollection _playerCollection)
         {
-            PlayerManagerDal = playerManagerDal;
+            playerCollection = _playerCollection;
         }
-        */
+
         public IActionResult Profile()
         {
-            PlayerDAL playerDal = new PlayerDAL();
+            ResponseObject<PlayerDTO> response = new ResponseObject<PlayerDTO>();
 
-            var response = playerDal.GetPlayer(1);
+            response = playerCollection.GetPlayer(1);
 
             PlayerModel playerModel = new PlayerModel();
 
-            playerModel.Id = response.data[1].Id;
-            playerModel.Nickname = response.data[1].Nickname;
-            playerModel.Picture = response.data[1].Picture;
+            if (response.Success)
+            {
+                playerModel.Nickname = response.data[0].Nickname;
+                playerModel.Picture = response.data[0].Picture;
+            }
+
+            return View(playerModel);
+        }
+
+        public IActionResult Test()
+        {
+            ResponseObject<PlayerDTO> response = new ResponseObject<PlayerDTO>();
+
+            response = playerCollection.GetPlayer(1);
+
+            PlayerModel playerModel = new PlayerModel();
+
+            if (response.Success)
+            {
+                playerModel.Nickname = response.data[0].Nickname;
+                playerModel.Picture = response.data[0].Picture;
+            }
 
             return View(playerModel);
         }

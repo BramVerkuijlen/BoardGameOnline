@@ -4,17 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InterfaceDAL.ResponseObject
+namespace DTO.ResponseObject
 {
-    public class DALResponseObject<T>
+    public class ResponseObject<T>
     {
         public string Message { get; set; }
         public bool Success { get; set; }
         public List<T> data { get; set; }
 
-        public DALResponseObject()
+        public ResponseObject()
         {
             Success = false;
+            data = new List<T>();
         }
     }
 }

@@ -1,17 +1,28 @@
-using Logic.Interfase;
-using Dal.Class;
+using DAL;
+using InterfaceDAL.Interface;
+using Logic;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-/*
-void ConfigureServices(IServiceCollection services)
-{
-    services.AddScoped<IPlayerDAL, PlayerDal>();
-}
-*/
+#region injection services
+
+// Logic
+builder.Services.AddTransient<Player>();
+builder.Services.AddTransient<PlayerCollection>();
+
+// DAL
+builder.Services.AddScoped<IPlayerDAL, PlayerDAL>();
+builder.Services.AddScoped<IPlayerCollectionDAL, PlayerDAL>();
+
+//Database
+
+builder.Services.AddSingleton<dbContext>();
+
+#endregion
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
