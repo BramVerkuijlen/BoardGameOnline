@@ -1,5 +1,4 @@
 ﻿using DTO.Class;
-using DTO.ResponseObject;
 using InterfaceDAL.Interface;
 using System;
 using System.Collections.Generic;
@@ -18,24 +17,24 @@ namespace DAL
             Connectionstring = dbContext.ConnectionString;
         }
 
-        public ResponseObject<PlayerDTO> CreatePlayer()
+        public List<PlayerDTO> CreatePlayer()
         {
             throw new NotImplementedException();
         }
 
-        public ResponseObject<PlayerDTO> DeletePlayer()
+        public List<PlayerDTO> DeletePlayer()
         {
             throw new NotImplementedException();
         }
 
-        public ResponseObject<PlayerDTO> DeletePlayer(int id)
+        public List<PlayerDTO> DeletePlayer(int id)
         {
             throw new NotImplementedException();
         }
 
-        public ResponseObject<PlayerDTO> GetAllPlayers()
+        public List<PlayerDTO> GetAllPlayers()
         {
-            ResponseObject<PlayerDTO> responseObject = new ResponseObject<PlayerDTO>();
+            List<PlayerDTO> players = new List<PlayerDTO>();
 
             using (SqlConnection conn = new SqlConnection(Connectionstring))
             {
@@ -53,19 +52,15 @@ namespace DAL
                     player.Nickname = reader.GetString(1);
                     player.Picture = reader.GetString(2);
 
-                    responseObject.data.Add(player);
+                    players.Add(player);
                 }
-
-                responseObject.Message = "Users succesfully got";
-                responseObject.Success = true;
             }
-
-            return responseObject;
+            return players;
         }
 
-        public ResponseObject<PlayerDTO> GetPlayer(int id)
-        {            
-            ResponseObject<PlayerDTO> responseObject = new ResponseObject<PlayerDTO>();
+        public PlayerDTO GetPlayer(int id)
+        {
+            PlayerDTO player = new PlayerDTO();
 
             using (SqlConnection conn = new SqlConnection(Connectionstring))
             {
@@ -77,29 +72,22 @@ namespace DAL
 
                 SqlDataReader reader = querry.ExecuteReader();
 
-                if (reader.Read() == true)
-                {
-                    PlayerDTO player = new PlayerDTO();
 
+                if (reader.Read())
+                {
                     player.Id = reader.GetInt32(0);
                     player.Nickname = reader.GetString(1);
                     player.Picture = reader.GetString(2);
-
-                    responseObject.Message = "User succesfully got";
-                    responseObject.Success = true;
-                    responseObject.data.Add(player);
                 }
                 else
                 {
-                    responseObject.Message = "User didnt exist";
-                    responseObject.Success = false;
+                    throw new Exception("Player not found");
                 }
             }
-
-            return responseObject;
+            return player;
         }
 
-        public ResponseObject<PlayerDTO> UpdatePlayer()
+        public List<PlayerDTO> UpdatePlayer()
         {
             throw new NotImplementedException();
         }

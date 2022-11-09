@@ -16,7 +16,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Games</h1>
+
+<!--Displaying pager-->
+<partial name="_Pager" model="@Pager" />
 
 <p>
     <a asp-action="Create" class="btn btn-m btn-success ml-1">Create New</a>
@@ -28,7 +31,7 @@
             <th>
                 Id
             </th>
-             <th>
+            <th>
                 name
             </th>
             <th>
@@ -36,28 +39,26 @@
             </th>
         </tr>
     </thead>
+    <tbody>
+        @foreach (var game in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => game.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => game.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => game.description)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new {/*Id = player.PrimaryKey*/}) |
+                    @Html.ActionLink("Update", "Update", new {/*Id = player.PrimaryKey*/}) |
+                    @Html.ActionLink("Delete", "Delete", new {/*Id = player.PrimaryKey*/})
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
-<tbody>
-    @foreach (var player in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(model => player.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(model => player.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(model => player.description)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new {/*Id = player.PrimaryKey*/}) |
-                @Html.ActionLink("Update", "Update", new {/*Id = player.PrimaryKey*/}) |
-                @Html.ActionLink("Delete", "Delete", new {/*Id = player.PrimaryKey*/})
-            </td>
-        </tr>
-    }
-</tbody>
 
-<!--Displaying pager-->
-
-<partial name="_Pager" model="@Pager" />

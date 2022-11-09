@@ -1,5 +1,4 @@
 ﻿using DTO.Class;
-using DTO.ResponseObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +9,6 @@ namespace InterfaceDAL.Interface
 {
     public interface IGameCollectionDAL
     {
-        public ResponseObject<GameDTO> GetAllGames();
+        public List<GameDTO> GetAllGames();
     }
 }

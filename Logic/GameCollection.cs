@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DTO.Class;
-using DTO.ResponseObject;
 using InterfaceDAL.Interface;
 
 namespace Logic
@@ -16,7 +15,7 @@ namespace Logic
         {
             gameCollectionDAL = _gameCollectionDAL;
         }
-        public ResponseObject<GameDTO> GetAllGames()
+        public List<GameDTO> GetAllGames()
         {
             return gameCollectionDAL.GetAllGames();
         }

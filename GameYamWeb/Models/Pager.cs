@@ -41,7 +41,7 @@
             TotalItems = totalItems;
             TotalPages = totalPages;
             PageSize = pageSize;
-            CurrentPage = startPage;
+            CurrentPage = currentpage;
             StartPage = startPage;
             EndPage = endPage;
 

@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DTO.Class;
-using DTO.ResponseObject;
 using InterfaceDAL.Interface;
 
 namespace DAL
@@ -17,9 +16,9 @@ namespace DAL
         {
             Connectionstring = dbContext.ConnectionString;
         }
-        public ResponseObject<GameDTO> GetAllGames()
+        public List<GameDTO> GetAllGames()
         {
-            ResponseObject<GameDTO> responseObject = new ResponseObject<GameDTO>();
+            List<GameDTO> games = new List<GameDTO>();
 
             using (SqlConnection conn = new SqlConnection(Connectionstring))
             {
@@ -35,16 +34,15 @@ namespace DAL
 
                     game.Id = reader.GetInt32(0);
                     game.Name = reader.GetString(1);
-                    game.Description = reader.GetString(2);
 
-                    responseObject.data.Add(game);
+                    if (!reader.IsDBNull(2))
+                    {
+                        game.Description = reader.GetString(2);
+                    }
+                    games.Add(game);
                 }
-
-                responseObject.Message = "Games succesfully got";
-                responseObject.Success = true;
             }
-
-            return responseObject;
+            return games;
         }
     }
 }

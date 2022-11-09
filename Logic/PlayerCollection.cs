@@ -1,5 +1,4 @@
 ﻿using DTO.Class;
-using DTO.ResponseObject;
 using InterfaceDAL.Interface;
 using System;
 using System.Collections.Generic;
@@ -16,12 +15,12 @@ namespace Logic
         {
             playerManagerDAL = _playerCollectionDAL;
         }
-        public ResponseObject<PlayerDTO> GetAllPlayers()
+        public List<PlayerDTO> GetAllPlayers()
         {
             return playerManagerDAL.GetAllPlayers();
         }
 
-        public ResponseObject<PlayerDTO> GetPlayer(int id)
+        public PlayerDTO GetPlayer(int id)
         {
             return playerManagerDAL.GetPlayer(id);
         }
