@@ -16,6 +16,8 @@ namespace DTO.ResponseObject
         {
             Success = false;
             data = new List<T>();
+
+            Message = "unkown error";
         }
     }
 }

@@ -1,0 +1,63 @@
+﻿@model List<GameModel>;
+@{
+    // setting up pager
+    Pager Pager = new Pager();
+
+    int pageNumber = 0;
+
+    if (ViewBag.Pager != null)
+    {
+        Pager = ViewBag.Pager;
+        pageNumber = Pager.CurrentPage;
+    }
+}
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-m btn-success ml-1">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+             <th>
+                name
+            </th>
+            <th>
+                description
+            </th>
+        </tr>
+    </thead>
+</table>
+<tbody>
+    @foreach (var player in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => player.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(model => player.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(model => player.description)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {/*Id = player.PrimaryKey*/}) |
+                @Html.ActionLink("Update", "Update", new {/*Id = player.PrimaryKey*/}) |
+                @Html.ActionLink("Delete", "Delete", new {/*Id = player.PrimaryKey*/})
+            </td>
+        </tr>
+    }
+</tbody>
+
+<!--Displaying pager-->
+
+<partial name="_Pager" model="@Pager" />

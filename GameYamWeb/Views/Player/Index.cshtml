@@ -1,0 +1,59 @@
+﻿@model List<PlayerModel>;
+@{
+    // setting up pager
+    Pager Pager = new Pager();
+
+    int pageNumber = 0;
+
+    if (ViewBag.Pager != null)
+    {
+        Pager = ViewBag.Pager;
+        pageNumber = Pager.CurrentPage;
+    }
+}
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+             <th>
+                Nickname
+            </th>
+            <th>
+                Picture
+            </th>
+        </tr>
+    </thead>
+</table>
+<tbody>
+    @foreach (var player in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => player.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(model => player.Nickname)
+            </td>
+            <td>
+                @Html.DisplayFor(model => player.Picture)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {/*Id = player.PrimaryKey*/}) |
+                @Html.ActionLink("Update", "Update", new {/*Id = player.PrimaryKey*/}) |
+                @Html.ActionLink("Delete", "Delete", new {/*Id = player.PrimaryKey*/})
+            </td>
+        </tr>
+    }
+</tbody>
+
+<!--Displaying pager-->
+
+<partial name="_Pager" model="@Pager" />

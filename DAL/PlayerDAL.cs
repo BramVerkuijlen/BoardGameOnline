@@ -35,11 +35,37 @@ namespace DAL
 
         public ResponseObject<PlayerDTO> GetAllPlayers()
         {
-            throw new NotImplementedException();
+            ResponseObject<PlayerDTO> responseObject = new ResponseObject<PlayerDTO>();
+
+            using (SqlConnection conn = new SqlConnection(Connectionstring))
+            {
+                conn.Open();
+
+                SqlCommand querry = new SqlCommand("SELECT * FROM Player", conn);
+
+                SqlDataReader reader = querry.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    PlayerDTO player = new PlayerDTO();
+
+                    player.Id = reader.GetInt32(0);
+                    player.Nickname = reader.GetString(1);
+                    player.Picture = reader.GetString(2);
+
+                    responseObject.data.Add(player);
+                }
+
+                responseObject.Message = "Users succesfully got";
+                responseObject.Success = true;
+            }
+
+            return responseObject;
         }
 
         public ResponseObject<PlayerDTO> GetPlayer(int id)
-        {            ResponseObject<PlayerDTO> responseObject = new ResponseObject<PlayerDTO>();
+        {            
+            ResponseObject<PlayerDTO> responseObject = new ResponseObject<PlayerDTO>();
 
             using (SqlConnection conn = new SqlConnection(Connectionstring))
             {
