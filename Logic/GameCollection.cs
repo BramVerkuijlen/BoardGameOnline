@@ -15,9 +15,23 @@ namespace Logic
         {
             gameCollectionDAL = _gameCollectionDAL;
         }
-        public List<GameDTO> GetAllGames()
+        public GameDTO Get(int id)
         {
-            return gameCollectionDAL.GetAllGames();
+            return gameCollectionDAL.Get(id);
+        }
+        public List<GameDTO> GetAll()
+        {
+            return gameCollectionDAL.GetAll();
+        }
+
+        public void Create(string name, string desciyption)
+        {
+            gameCollectionDAL.Create(name , desciyption);
+        }
+
+        public void Delete(int id)
+        {
+            gameCollectionDAL.Delete(id);
         }
     }
 }

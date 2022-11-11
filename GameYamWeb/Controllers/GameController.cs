@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Logic;
 using GameYamWeb.Models;
-using DTO.ResponseObject;
 using DTO.Class;
 
 namespace GameYamWeb.Controllers
@@ -18,7 +17,7 @@ namespace GameYamWeb.Controllers
         {
             List<GameDTO> games = new List<GameDTO>();
 
-            games = gameCollection.GetAllGames();
+            games = gameCollection.GetAll();
 
             List<GameModel> gameModelList = new List<GameModel>();
 
@@ -62,7 +61,7 @@ namespace GameYamWeb.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            Game game = new Game();
+            GameModel game = new GameModel();
 
             return View(game);
         }

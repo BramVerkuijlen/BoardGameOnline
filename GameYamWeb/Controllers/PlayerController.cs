@@ -63,19 +63,5 @@ namespace GameYamWeb.Controllers
         {
             throw new NotImplementedException();
         }
-
-        public IActionResult Profile()
-        {
-            PlayerDTO response = new PlayerDTO();
-
-            response = playerCollection.GetPlayer(1);
-
-            PlayerModel playerModel = new PlayerModel();
-
-            playerModel.Nickname = response.Nickname;
-            playerModel.Picture = response.Picture;
-
-            return View(playerModel);
-        }
     }
 }
