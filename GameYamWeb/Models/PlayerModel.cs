@@ -5,17 +5,18 @@ namespace GameYamWeb.Models
 {
     public class PlayerModel
     {
-        public int Id { get; set; }
+
         [Required]
         [Display(Name = "id")]
+        public int Id { get; set; }
 
-        public string Nickname { get; set; }
         [Required]
         [Display(Name = "Nickname")]
+        public string Nickname { get; set; }
 
-        public string Picture { get; set; }
         [Required]
         [Display(Name = "Picture")]
+        public string Picture { get; set; }
 
         public List<Player> FriendList { get; set; }
     }

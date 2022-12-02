@@ -54,6 +54,8 @@ namespace DAL
 
                     players.Add(player);
                 }
+
+                conn.Close();
             }
             return players;
         }
@@ -83,6 +85,8 @@ namespace DAL
                 {
                     throw new Exception("Player not found");
                 }
+
+                conn.Close();
             }
             return player;
         }

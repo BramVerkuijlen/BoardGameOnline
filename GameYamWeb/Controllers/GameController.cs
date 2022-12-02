@@ -8,9 +8,11 @@ namespace GameYamWeb.Controllers
     public class GameController : Controller
     {
         private readonly GameCollection gameCollection;
-        public GameController(GameCollection _gameCollection)
+        private readonly Game game;
+        public GameController(GameCollection _gameCollection, Game _game)
         {
             gameCollection = _gameCollection;
+            game = _game;
         }
 
         public IActionResult Index(int pg = 1)
@@ -27,7 +29,7 @@ namespace GameYamWeb.Controllers
 
                 gameModel.Id = game.Id;
                 gameModel.Name = game.Name;
-                gameModel.description = game.Description;
+                gameModel.Description = game.Description;
 
                 gameModelList.Add(gameModel);
             }
@@ -67,9 +69,38 @@ namespace GameYamWeb.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Game game)
+        public IActionResult Create(GameModel gameModel)
         {
+            gameCollection.Create(gameModel.Name, gameModel.Description);
 
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            GameDTO game = gameCollection.Get(id);
+
+            GameModel gameModel = new GameModel();
+
+            gameModel.Id = game.Id;
+            gameModel.Name = game.Name;
+            gameModel.Description = game.Description;
+
+            return View(gameModel);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(GameModel gameModel)
+        {
+            game.Update(gameModel.Id, gameModel.Name, gameModel.Description);
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Delete(int id)
+        {
+            gameCollection.Delete(id);
 
             return RedirectToAction("Index");
         }

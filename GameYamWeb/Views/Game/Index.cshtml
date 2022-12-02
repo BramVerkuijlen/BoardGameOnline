@@ -17,6 +17,7 @@
 }
 
 <h1>Games</h1>
+<hr />
 
 <!--Displaying pager-->
 <partial name="_Pager" model="@Pager" />
@@ -50,11 +51,11 @@
                     @Html.DisplayFor(model => game.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(model => game.description)
+                    @Html.DisplayFor(model => game.Description)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new {/*Id = player.PrimaryKey*/}) |
-                    @Html.ActionLink("Delete", "Delete", new {/*Id = player.PrimaryKey*/})
+                    @Html.ActionLink("Edit", "Edit", new {Id = game.Id}) |
+                    @Html.ActionLink("Delete", "Delete", new {Id = game.Id})
                 </td>
             </tr>
         }

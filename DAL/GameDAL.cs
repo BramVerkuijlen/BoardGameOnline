@@ -26,9 +26,18 @@ namespace DAL
                 SqlCommand querry = new SqlCommand("INSERT INTO Game (Name, Description) VALUES(@name, @description)", conn);
 
                 querry.Parameters.AddWithValue("@name", name);
-                querry.Parameters.AddWithValue("@description", description);
-
+                if (description != null)
+                {
+                    querry.Parameters.AddWithValue("@description", description);
+                }
+                else
+                {
+                    querry.Parameters.AddWithValue("@description", DBNull.Value);
+                }
+                
                 querry.ExecuteReader();
+
+                conn.Close();
             }
         }
 
@@ -50,12 +59,18 @@ namespace DAL
                 {
                     game.Id = reader.GetInt32(0);
                     game.Name = reader.GetString(1);
-                    game.Description = reader.GetString(2);
+
+                    if (!reader.IsDBNull(2))
+                    {
+                        game.Description = reader.GetString(2);
+                    }
                 }
                 else
                 {
                     throw new Exception("Game not found");
                 }
+
+                conn.Close();
             }
             return game;
         }
@@ -85,6 +100,8 @@ namespace DAL
                     }
                     games.Add(game);
                 }
+
+                conn.Close();
             }
             return games;
         }
@@ -94,14 +111,22 @@ namespace DAL
             {
                 conn.Open();
 
-                SqlCommand querry = new SqlCommand("UPDATE Game SET Name = @name, description = @description, WHERE Id = @Id", conn);
-
+                SqlCommand querry = new SqlCommand("UPDATE Game SET Name = @name, description = @description WHERE Id = @Id", conn);
 
                 querry.Parameters.AddWithValue("@Id", id);
                 querry.Parameters.AddWithValue("@name", name);
-                querry.Parameters.AddWithValue("@description", description);
+                if (description != null)
+                {
+                    querry.Parameters.AddWithValue("@description", description);
+                }
+                else
+                {
+                    querry.Parameters.AddWithValue("@description", DBNull.Value);
+                }
 
                 querry.ExecuteReader();
+
+                conn.Close();
             }
         }
 
@@ -116,6 +141,8 @@ namespace DAL
                 querry.Parameters.AddWithValue("@Id", id);
 
                 querry.ExecuteReader();
+
+                conn.Close();
             }
         }
     }

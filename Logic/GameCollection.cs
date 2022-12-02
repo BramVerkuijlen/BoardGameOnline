@@ -24,9 +24,9 @@ namespace Logic
             return gameCollectionDAL.GetAll();
         }
 
-        public void Create(string name, string desciyption)
+        public void Create(string name, string description)
         {
-            gameCollectionDAL.Create(name , desciyption);
+            gameCollectionDAL.Create(name , description);
         }
 
         public void Delete(int id)
