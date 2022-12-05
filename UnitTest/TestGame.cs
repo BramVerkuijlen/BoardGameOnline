@@ -19,7 +19,7 @@ namespace UnitTest
         {
             // arrange
             FakeGameDAL fakeGameDAL = new FakeGameDAL();
-            GameCollection gameCollection = new GameCollection(fakeGameDAL);
+            GameCollectionService gameCollection = new GameCollectionService(fakeGameDAL);
 
             // act
             gameCollection.Create(name, description);
@@ -37,7 +37,7 @@ namespace UnitTest
         {
             // arrange
             FakeGameDAL fakeGameDAL = new FakeGameDAL();
-            GameCollection gameCollection = new GameCollection(fakeGameDAL);
+            GameCollectionService gameCollection = new GameCollectionService(fakeGameDAL);
 
             // act
             var expected = gameCollection.Get(id);
@@ -53,7 +53,7 @@ namespace UnitTest
         {
             // arrange
             FakeGameDAL fakeGameDAL = new FakeGameDAL();
-            GameCollection gameCollection = new GameCollection(fakeGameDAL);
+            GameCollectionService gameCollection = new GameCollectionService(fakeGameDAL);
 
             // act
             var expected = gameCollection.GetAll();
@@ -78,7 +78,7 @@ namespace UnitTest
         {
             // arrange
             FakeGameDAL fakeGameDAL = new FakeGameDAL();
-            Game game = new Game(fakeGameDAL);
+            GameService game = new GameService(fakeGameDAL);
 
             // act
             game.Update(id, name, description);
@@ -95,7 +95,7 @@ namespace UnitTest
         {
             // arrange
             FakeGameDAL fakeGameDAL = new FakeGameDAL();
-            GameCollection gameCollection = new GameCollection(fakeGameDAL);
+            GameCollectionService gameCollection = new GameCollectionService(fakeGameDAL);
 
             // act
             gameCollection.Delete(id);

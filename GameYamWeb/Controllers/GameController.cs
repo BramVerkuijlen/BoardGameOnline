@@ -1,23 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Logic;
 using GameYamWeb.Models;
-using DTO.Class;
 
 namespace GameYamWeb.Controllers
 {
     public class GameController : Controller
     {
-        private readonly GameCollection gameCollection;
-        private readonly Game game;
-        public GameController(GameCollection _gameCollection, Game _game)
+        private readonly GameCollectionService gameCollection;
+        private readonly GameService game;
+        public GameController(GameCollectionService _gameCollection, GameService _game)
         {
             gameCollection = _gameCollection;
             game = _game;
+
         }
 
         public IActionResult Index(int pg = 1)
         {
-            List<GameDTO> games = new List<GameDTO>();
+            List<Game> games = new List<Game>();
 
             games = gameCollection.GetAll();
 
@@ -35,7 +35,7 @@ namespace GameYamWeb.Controllers
             }
 
             // setting up pager
-            const int pageSize = 5;
+            const int pageSize = 3;
             if (pg < 1)
             {
                 pg = 1;
@@ -79,7 +79,7 @@ namespace GameYamWeb.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            GameDTO game = gameCollection.Get(id);
+            Game game = gameCollection.Get(id);
 
             GameModel gameModel = new GameModel();
 

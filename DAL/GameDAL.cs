@@ -19,6 +19,11 @@ namespace DAL
 
         public void Create(string name, string description)
         {
+            if (name == null)
+            {
+                throw new ArgumentNullException("name");
+            }
+
             using (SqlConnection conn = new SqlConnection(Connectionstring))
             {
                 conn.Open();
@@ -43,6 +48,11 @@ namespace DAL
 
         public GameDTO Get(int id)
         {
+            if (id == null)
+            {
+                throw new ArgumentNullException("id");
+            }
+
             GameDTO game = new GameDTO();
 
             using (SqlConnection conn = new SqlConnection(Connectionstring))
@@ -107,6 +117,11 @@ namespace DAL
         }
         public void Update(int id, string name, string description)
         {
+            if (id == null || name == null)
+            {
+                throw new ArgumentNullException("id, name");
+            }
+
             using (SqlConnection conn = new SqlConnection(Connectionstring))
             {
                 conn.Open();
@@ -132,6 +147,11 @@ namespace DAL
 
         public void Delete(int id)
         {
+            if (id == null)
+            {
+                throw new ArgumentNullException("id");
+            }
+
             using (SqlConnection conn = new SqlConnection(Connectionstring))
             {
                 conn.Open();

@@ -13,8 +13,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<Player>();
 builder.Services.AddTransient<PlayerCollection>();
 
-builder.Services.AddTransient<Game>();
-builder.Services.AddTransient<GameCollection>();
+builder.Services.AddTransient<GameService>();
+builder.Services.AddTransient<GameCollectionService>();
 
 // DAL
 builder.Services.AddScoped<IPlayerDAL, PlayerDAL>();

@@ -1,6 +1,4 @@
-﻿using DTO.Class;
-using InterfaceDAL.Interface;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,14 +8,15 @@ namespace Logic
 {
     public class Game
     {
-        private readonly IGameDAL gameDAL;
-        public Game(IGameDAL _gameDAL)
+        public int Id { get; private set; }
+        public string Name { get; private set; }
+        public string? Description { get; private set; }
+
+        public Game(int id, string name, string? description)
         {
-            gameDAL = _gameDAL;
-        }
-        public void Update(int id, string name, string description)
-        {
-            gameDAL.Update(id, name, description);
+            Id = id;
+            Name = name;
+            Description = description;
         }
     }
 }

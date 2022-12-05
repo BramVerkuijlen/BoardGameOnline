@@ -30,9 +30,6 @@
     <thead>
         <tr>
             <th>
-                Id
-            </th>
-            <th>
                 name
             </th>
             <th>
@@ -44,9 +41,6 @@
         @foreach (var game in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(model => game.Id)
-                </td>
                 <td>
                     @Html.DisplayFor(model => game.Name)
                 </td>
