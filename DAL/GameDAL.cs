@@ -9,7 +9,7 @@ using InterfaceDAL.Interface;
 
 namespace DAL
 {
-    public class GameDAL : IGameCollectionDAL, IGameDAL
+    public class GameDAL : IGameDAL
     {
         private readonly string Connectionstring;
         public GameDAL(dbContext dbContext)

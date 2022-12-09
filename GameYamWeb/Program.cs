@@ -14,14 +14,12 @@ builder.Services.AddTransient<Player>();
 builder.Services.AddTransient<PlayerCollection>();
 
 builder.Services.AddTransient<GameService>();
-builder.Services.AddTransient<GameCollectionService>();
 
 // DAL
 builder.Services.AddScoped<IPlayerDAL, PlayerDAL>();
 builder.Services.AddScoped<IPlayerCollectionDAL, PlayerDAL>();
 
 builder.Services.AddScoped<IGameDAL, GameDAL>();
-builder.Services.AddScoped<IGameCollectionDAL, GameDAL>();
 
 //Database
 

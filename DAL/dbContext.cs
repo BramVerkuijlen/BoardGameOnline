@@ -12,7 +12,7 @@ namespace DAL
 
         public dbContext()
         {
-            ConnectionString = "Data Source=LAPTOP-VCK4O5UP;Initial Catalog=GameYamDB;Integrated Security=True";
+            ConnectionString = "Data Source=LAPTOP-HU4NMC01;Initial Catalog=GameYamDB;Integrated Security=True";
         }
     }
 }

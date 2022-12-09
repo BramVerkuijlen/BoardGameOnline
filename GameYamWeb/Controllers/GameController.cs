@@ -6,12 +6,10 @@ namespace GameYamWeb.Controllers
 {
     public class GameController : Controller
     {
-        private readonly GameCollectionService gameCollection;
-        private readonly GameService game;
-        public GameController(GameCollectionService _gameCollection, GameService _game)
+        private readonly GameService gameService;
+        public GameController(GameService _gameService)
         {
-            gameCollection = _gameCollection;
-            game = _game;
+            gameService = _gameService;
 
         }
 
@@ -19,7 +17,7 @@ namespace GameYamWeb.Controllers
         {
             List<Game> games = new List<Game>();
 
-            games = gameCollection.GetAll();
+            games = gameService.GetAll();
 
             List<GameModel> gameModelList = new List<GameModel>();
 
@@ -71,7 +69,7 @@ namespace GameYamWeb.Controllers
         [HttpPost]
         public IActionResult Create(GameModel gameModel)
         {
-            gameCollection.Create(gameModel.Name, gameModel.Description);
+            gameService.Create(gameModel.Name, gameModel.Description);
 
             return RedirectToAction("Index");
         }
@@ -79,28 +77,28 @@ namespace GameYamWeb.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            Game game = gameCollection.Get(id);
+            Game game = gameService.Get(id);
 
             GameModel gameModel = new GameModel();
 
             gameModel.Id = game.Id;
             gameModel.Name = game.Name;
             gameModel.Description = game.Description;
-
+            
             return View(gameModel);
         }
 
         [HttpPost]
         public IActionResult Edit(GameModel gameModel)
         {
-            game.Update(gameModel.Id, gameModel.Name, gameModel.Description);
+            gameService.Update(gameModel.Id, gameModel.Name, gameModel.Description);
 
             return RedirectToAction("Index");
         }
 
         public IActionResult Delete(int id)
         {
-            gameCollection.Delete(id);
+            gameService.Delete(id);
 
             return RedirectToAction("Index");
         }

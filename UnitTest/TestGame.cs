@@ -15,6 +15,7 @@ namespace UnitTest
         [TestMethod]
         [DataRow("monopoly","got to get orange")]
         [DataRow("monopoly", null)]
+        [DataRow("mario kart", "win")]
         public void Create_CreateGame(string name, string? description)
         {
             // arrange
