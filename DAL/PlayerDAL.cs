@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class PlayerDAL : IPlayerDAL , IPlayerCollectionDAL
+    public class PlayerDAL : IPlayerDAL
     {
         private readonly string Connectionstring;
         public PlayerDAL(dbContext dbContext)

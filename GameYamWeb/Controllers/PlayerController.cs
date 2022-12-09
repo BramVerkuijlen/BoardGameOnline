@@ -7,17 +7,17 @@ namespace GameYamWeb.Controllers
 {
     public class PlayerController : Controller
     {
-        private readonly PlayerCollection playerCollection;
-        public PlayerController(PlayerCollection _playerCollection)
+        private readonly PlayerService playerService;
+        public PlayerController(PlayerService _playerService)
         {
-            playerCollection = _playerCollection;
+            playerService = _playerService;
         }
 
         public IActionResult Index(int pg = 1)
         {
-            List<PlayerDTO> players = new List<PlayerDTO>();
+            List<Player> players = new List<Player>();
 
-            players = playerCollection.GetAllPlayers();
+            players = playerService.GetAllPlayers();
 
             List<PlayerModel> playerModelList = new List<PlayerModel>();
 

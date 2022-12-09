@@ -18,6 +18,6 @@ namespace GameYamWeb.Models
         [Display(Name = "Picture")]
         public string Picture { get; set; }
 
-        public List<Player> FriendList { get; set; }
+        public List<PlayerService> FriendList { get; set; }
     }
 }

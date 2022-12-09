@@ -10,7 +10,6 @@ namespace GameYamWeb.Controllers
         public GameController(GameService _gameService)
         {
             gameService = _gameService;
-
         }
 
         public IActionResult Index(int pg = 1)
