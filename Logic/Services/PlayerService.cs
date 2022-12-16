@@ -19,12 +19,11 @@ namespace Logic
         {
             List<Player> players = new List<Player>();
 
-            foreach (PlayerDTO playerDTO in playerDAL.GetAllPlayers())
+            foreach (PlayerDTO playerDTO in playerDAL.GetAll())
             {
-                Player player = new Player();
-                player.Id = playerDTO.Id;
-                player.Nickname = playerDTO.Nickname;
-                player.Picture = playerDTO.Picture;
+                List<Player> friendlist = new List<Player>();
+
+                Player player = new Player(playerDTO.Id, playerDTO.Nickname, playerDTO.Picture, friendlist);
                 
                 players.Add(player);
             }
@@ -36,13 +35,11 @@ namespace Logic
         {
             PlayerDTO playerDTO = new PlayerDTO();
 
-            playerDTO = playerDAL.GetPlayer(id);
+            playerDTO = playerDAL.Get(id);
 
-            Player player = new Player();
+            List<Player> friendlist = new List<Player>();
 
-            player.Id = playerDTO.Id;
-            player.Nickname = playerDTO.Nickname;
-            player.Picture = playerDTO.Picture;
+            Player player = new Player(playerDTO.Id, playerDTO.Nickname, playerDTO.Picture, friendlist);
 
             return player;
 

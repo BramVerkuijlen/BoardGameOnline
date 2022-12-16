@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnitTest
+namespace UnitTest.FakeDALs
 {
-    internal class FakeGameDAL : IGameCollectionDAL , IGameDAL
+    internal class FakeGameDAL : IGameDAL
     {
 
         // setting up games for the fake database

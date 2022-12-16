@@ -10,12 +10,27 @@ namespace Logic
 {
     public class Player
     {
-        public int Id { get; set; }
+        public int Id { get; private set; }
 
-        public string Nickname { get; set; }
+        public string Nickname { get; private set; }
 
-        public string Picture { get; set; }
+        public string Picture { get; private set; }
 
-        public List<Player> FriendList { get; set; }
+        private List<Player> _friendList = new List<Player>();
+        public IReadOnlyCollection<Player> FriendList
+        {
+            get
+            {
+                return _friendList.AsReadOnly();
+            }
+        }
+
+        public Player(int id, string nickname, string picture, List<Player> friendList)
+        {
+            Id = id;
+            Nickname = nickname;
+            Picture = picture;
+            _friendList = friendList;
+        }
     }
 }

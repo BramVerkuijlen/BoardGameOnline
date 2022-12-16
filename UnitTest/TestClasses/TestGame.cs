@@ -6,24 +6,25 @@ using System.Threading.Tasks;
 using DTO.Class;
 using Logic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using UnitTest.FakeDALs;
 
-namespace UnitTest
+namespace UnitTest.TestClasses
 {
     [TestClass]
     public class TestGame
     {
         [TestMethod]
-        [DataRow("monopoly","got to get orange")]
+        [DataRow("monopoly", "got to get orange")]
         [DataRow("monopoly", null)]
         [DataRow("mario kart", "win")]
         public void Create_CreateGame(string name, string? description)
         {
             // arrange
             FakeGameDAL fakeGameDAL = new FakeGameDAL();
-            GameCollectionService gameCollection = new GameCollectionService(fakeGameDAL);
+            GameService gameService = new GameService(fakeGameDAL);
 
             // act
-            gameCollection.Create(name, description);
+            gameService.Create(name, description);
 
             // assert
             Assert.AreEqual(6, fakeGameDAL.Games.Count());
@@ -33,15 +34,15 @@ namespace UnitTest
 
         [TestMethod]
         [DataRow(1, "chess", "defeat the opposing king")]
-        [DataRow(4,"GO", null)]
+        [DataRow(4, "GO", null)]
         public void Get_GetGame(int id, string expectedName, string? expectedDescryption)
         {
             // arrange
             FakeGameDAL fakeGameDAL = new FakeGameDAL();
-            GameCollectionService gameCollection = new GameCollectionService(fakeGameDAL);
+            GameService gameService = new GameService(fakeGameDAL);
 
             // act
-            var expected = gameCollection.Get(id);
+            var expected = gameService.Get(id);
 
             // assert
             Assert.AreEqual(id, expected.Id);
@@ -54,10 +55,10 @@ namespace UnitTest
         {
             // arrange
             FakeGameDAL fakeGameDAL = new FakeGameDAL();
-            GameCollectionService gameCollection = new GameCollectionService(fakeGameDAL);
+            GameService gameService = new GameService(fakeGameDAL);
 
             // act
-            var expected = gameCollection.GetAll();
+            var expected = gameService.GetAll();
 
             // assert
             Assert.AreEqual("chess", expected[0].Name);
@@ -79,10 +80,10 @@ namespace UnitTest
         {
             // arrange
             FakeGameDAL fakeGameDAL = new FakeGameDAL();
-            GameService game = new GameService(fakeGameDAL);
+            GameService gameService = new GameService(fakeGameDAL);
 
             // act
-            game.Update(id, name, description);
+            gameService.Update(id, name, description);
 
             // assert
             Assert.AreEqual(id, fakeGameDAL.Games.Where(game => game.Id == id).FirstOrDefault().Id);
@@ -96,10 +97,10 @@ namespace UnitTest
         {
             // arrange
             FakeGameDAL fakeGameDAL = new FakeGameDAL();
-            GameCollectionService gameCollection = new GameCollectionService(fakeGameDAL);
+            GameService gameService = new GameService(fakeGameDAL);
 
             // act
-            gameCollection.Delete(id);
+            gameService.Delete(id);
 
             // assert
             Assert.AreEqual(4, fakeGameDAL.Games.Count());

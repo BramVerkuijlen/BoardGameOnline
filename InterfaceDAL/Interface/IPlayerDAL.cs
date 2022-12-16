@@ -4,10 +4,10 @@ namespace InterfaceDAL.Interface
 {
     public interface IPlayerDAL
     {
-        public List<PlayerDTO> UpdatePlayer();
-        public PlayerDTO GetPlayer(int id);
-        public List<PlayerDTO> GetAllPlayers();
-        public List<PlayerDTO> DeletePlayer(int id);
-        public List<PlayerDTO> CreatePlayer();
+        public List<PlayerDTO> Update();
+        public PlayerDTO Get(int id);
+        public List<PlayerDTO> GetAll();
+        public List<PlayerDTO> Delete(int id);
+        public List<PlayerDTO> Create();
     }
 }

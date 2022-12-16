@@ -15,6 +15,8 @@ builder.Services.AddTransient<PlayerService>();
 builder.Services.AddTransient<GameService>();
 
 // DAL
+builder.Services.AddScoped<IAccountDAL, AccountDAL>();
+
 builder.Services.AddScoped<IPlayerDAL, PlayerDAL>();
 
 builder.Services.AddScoped<IGameDAL, GameDAL>();

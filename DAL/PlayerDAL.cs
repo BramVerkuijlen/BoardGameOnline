@@ -17,22 +17,17 @@ namespace DAL
             Connectionstring = dbContext.ConnectionString;
         }
 
-        public List<PlayerDTO> CreatePlayer()
+        public List<PlayerDTO> Create()
         {
             throw new NotImplementedException();
         }
 
-        public List<PlayerDTO> DeletePlayer()
+        public List<PlayerDTO> Delete(int id)
         {
             throw new NotImplementedException();
         }
 
-        public List<PlayerDTO> DeletePlayer(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<PlayerDTO> GetAllPlayers()
+        public List<PlayerDTO> GetAll()
         {
             List<PlayerDTO> players = new List<PlayerDTO>();
 
@@ -60,7 +55,7 @@ namespace DAL
             return players;
         }
 
-        public PlayerDTO GetPlayer(int id)
+        public PlayerDTO Get(int id)
         {
             PlayerDTO player = new PlayerDTO();
 
@@ -91,7 +86,7 @@ namespace DAL
             return player;
         }
 
-        public List<PlayerDTO> UpdatePlayer()
+        public List<PlayerDTO> Update()
         {
             throw new NotImplementedException();
         }
