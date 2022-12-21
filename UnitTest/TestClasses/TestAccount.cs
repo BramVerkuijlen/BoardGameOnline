@@ -16,6 +16,7 @@ namespace UnitTest.TestClasses
     public class TestAccount
     {
         [DataRow("test", "test@test.com", "1234")]
+        [DataRow("Sylvester", "sylverster@test.com", "jemoeder")]
         [TestMethod]
         public void Create_CreateAccount_CorrectData(string username, string email, string password)
         {
@@ -54,10 +55,24 @@ namespace UnitTest.TestClasses
             } catch (ArgumentException) { }            
         }
 
+        [DataRow("Peter", "1234", true)]
+        [DataRow("Peter@gmail.com", "1234", true)]
+        [DataRow("John.Johnsen@hotmail.com", "2345", true)]
+        [DataRow("Piet", "1234", false)]
+        [DataRow("Peter@com", "1234", false)]
+        [DataRow("John.Johnsen@hotmail.com", "0239", false)]
         [TestMethod]
-        public void Login_LoginToAccount()
+        public void Login_LoginToAccount(string loginInput, string password, bool expectedOutcome)
         {
+            //arrange
+            FakeAccountDAL fakeAccountDAL = new FakeAccountDAL();
+            AccountService accountService = new AccountService(fakeAccountDAL);
 
+            //act
+            var expected = accountService.Login(loginInput, password);
+
+            //assert
+            Assert.AreEqual(expectedOutcome, expected);
         }
 
         [TestMethod]

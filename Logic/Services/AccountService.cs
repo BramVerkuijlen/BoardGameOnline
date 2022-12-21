@@ -35,11 +35,42 @@ namespace Logic
             accountDAL.Create(username, email, PasswordHash);
         }
 
-        public bool Login(string username, string password)
+        public bool Login(string loginInput, string password)
+        {
+            if (CheckIfUsernameValid(loginInput))
+            {
+                return LoginUsingUsername(loginInput, password);
+            }
+
+            if (CheckIfEmailValid(loginInput))
+            {
+                return LoginUsingEmail(loginInput, password);
+            }
+
+            return false;
+        }
+
+        private bool LoginUsingUsername(string username, string password)
         {
             AccountDTO accountDTO = accountDAL.GetOnUsername(username);
 
-            return SecurePasswordHasher.Verify(password, accountDTO.PasswordHashed);
+            if (accountDTO.PasswordHashed != null)
+            {
+                return SecurePasswordHasher.Verify(password, accountDTO.PasswordHashed);
+            }
+            
+            return false;
+        }
+        private bool LoginUsingEmail(string email, string password)
+        {
+            AccountDTO accountDTO = accountDAL.GetOnEmail(email);
+
+            if (accountDTO.PasswordHashed != null)
+            {
+                return SecurePasswordHasher.Verify(password, accountDTO.PasswordHashed);
+            }
+
+            return false;
         }
 
         public void Update(string username, string email, string password)
@@ -54,11 +85,11 @@ namespace Logic
 
         public bool CheckIfUsernameExists(string username)
         {
-            return accountDAL.GetOnUsername(username) != null;
+            return accountDAL.GetOnUsername(username).Username == username;
         }
         public bool CheckIfEmailExists(string email)
         {
-            return accountDAL.GetOnEmail(email) != null;
+            return accountDAL.GetOnEmail(email).Email == email;
         }
 
         public bool CheckIfUsernameValid(string username)

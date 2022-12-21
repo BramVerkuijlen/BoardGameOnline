@@ -10,6 +10,8 @@ builder.Services.AddControllersWithViews();
 #region injection services
 
 // Logic
+builder.Services.AddTransient<AccountService>();
+
 builder.Services.AddTransient<PlayerService>();
 
 builder.Services.AddTransient<GameService>();
